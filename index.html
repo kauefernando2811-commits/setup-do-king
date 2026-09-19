@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setup do King v11</title>
+    <title>Setup do King</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
             transition: background 0.3s ease;
         }
 
-        /* TELA DE MENU INICIAR FORÇADA */
+        /* TELA DE MENU INICIAR */
         .welcome-screen {
             position: absolute;
             top: 0;
@@ -66,7 +66,7 @@
             justify-content: center;
             align-items: center;
             padding: 32px;
-            z-index: 100;
+            z-index: 10;
             text-align: center;
         }
 
@@ -104,8 +104,11 @@
             cursor: pointer;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             margin-bottom: 20px;
-            display: block;
             width: 80%;
+        }
+
+        .btn-start:active {
+            transform: scale(0.95);
         }
 
         /* BOTÃO DE CONFIGURAÇÕES DE COR */
@@ -120,7 +123,6 @@
             letter-spacing: 1px;
             border-radius: 6px;
             cursor: pointer;
-            display: block;
             width: 60%;
         }
 
@@ -147,9 +149,9 @@
 
         /* CONTEÚDO PRINCIPAL DO APP */
         .app-content {
-            width: 100%;
             display: none;
             flex-direction: column;
+            width: 100%;
         }
 
         .app-content.visible {
