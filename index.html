@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Setup do King</title>
+    <title>Setup do King v11</title>
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
     <link href="https://googleapis.com/css2?family=Plus+Jakarta+Sans:wght@600;800&display=swap" rel="stylesheet">
@@ -52,7 +52,7 @@
             transition: background 0.3s ease;
         }
 
-        /* TELA DE MENU INICIAR */
+        /* TELA DE MENU INICIAR FORÇADA */
         .welcome-screen {
             position: absolute;
             top: 0;
@@ -66,15 +66,12 @@
             justify-content: center;
             align-items: center;
             padding: 32px;
-            z-index: 10;
-            transition: opacity 0.5s ease, transform 0.5s ease;
+            z-index: 100;
             text-align: center;
         }
 
         .welcome-screen.hidden {
-            opacity: 0;
-            pointer-events: none;
-            transform: translateY(-20px);
+            display: none !important;
         }
 
         .welcome-icon {
@@ -106,12 +103,9 @@
             border-radius: 8px;
             cursor: pointer;
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
-            transition: all 0.2s ease;
             margin-bottom: 20px;
-        }
-
-        .btn-start:active {
-            transform: scale(0.95);
+            display: block;
+            width: 80%;
         }
 
         /* BOTÃO DE CONFIGURAÇÕES DE COR */
@@ -126,7 +120,8 @@
             letter-spacing: 1px;
             border-radius: 6px;
             cursor: pointer;
-            transition: all 0.2s ease;
+            display: block;
+            width: 60%;
         }
 
         /* PAINEL DE PALETAS DE CORES */
@@ -148,26 +143,17 @@
             border-radius: 50%;
             cursor: pointer;
             border: 2px solid transparent;
-            transition: transform 0.2s ease;
-        }
-
-        .color-dot:active {
-            transform: scale(0.85);
         }
 
         /* CONTEÚDO PRINCIPAL DO APP */
         .app-content {
-            display: flex;
-            flex-direction: column;
             width: 100%;
-            opacity: 0;
-            transition: opacity 0.5s ease;
             display: none;
+            flex-direction: column;
         }
 
         .app-content.visible {
-            opacity: 1;
-            display: flex;
+            display: flex !important;
         }
 
         .main-title {
@@ -232,12 +218,6 @@
             letter-spacing: 1px;
             margin-bottom: 25px;
             box-shadow: 0 0 25px rgba(255, 255, 255, 0.9);
-            animation: pop 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        }
-
-        @keyframes pop {
-            0% { transform: scale(0.8); opacity: 0; }
-            100% { transform: scale(1); opacity: 1; }
         }
 
         .category-title {
@@ -263,11 +243,6 @@
             display: flex;
             align-items: center;
             cursor: pointer;
-            transition: all 0.2s ease;
-        }
-
-        .item:active {
-            transform: scale(0.98);
         }
 
         .checkbox {
@@ -279,7 +254,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            transition: all 0.2s ease;
             background: #0d0d0d;
             flex-shrink: 0;
         }
@@ -327,9 +301,20 @@
     <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-icon">✨🕹️</div>
         <h1>Setup do King</h1>
-        <button class="btn-start" id="btnStart">Iniciar</button>
-        <button class="btn-settings" id="btnSettings">⚙️ Configurações</button>
+        <button class="btn-start" onclick="startApp()">Iniciar</button>
+        <button class="btn-settings" onclick="toggleSettings()">⚙️ Configurações</button>
         
         <!-- SELETOR DE CORES -->
         <div class="color-panel" id="colorPanel">
             <div class="color-dot" style="background: #050505; border-color: #fff;" onclick="changeTheme('#121212', '#080808', '#050505')"></div>
+            <div class="color-dot" style="background: #a82323;" onclick="changeTheme('#3a0d0d', '#1a0505', '#120202')"></div>
+            <div class="color-dot" style="background: #23a83b;" onclick="changeTheme('#0d3a15', '#051a08', '#021204')"></div>
+            <div class="color-dot" style="background: #bfaa1c;" onclick="changeTheme('#3a340d', '#1a1705', '#121002')"></div>
+            <div class="color-dot" style="background: #235fa8;" onclick="changeTheme('#0d213a', '#050f1a', '#020a12')"></div>
+            <div class="color-dot" style="background: #a82384;" onclick="changeTheme('#3a0d2d', '#1a0514', '#12020e')"></div>
+        </div>
+    </div>
+
+    <div class="app-content" id="appContent">
+        <h1 class="main-title">Setup do King ✨🕹️</h1>
+        
