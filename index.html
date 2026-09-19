@@ -49,7 +49,6 @@
             z-index: 2;
             display: flex;
             flex-direction: column;
-            transition: background 0.3s ease;
         }
 
         /* TELA DE MENU INICIAR */
@@ -66,7 +65,7 @@
             justify-content: center;
             align-items: center;
             padding: 32px;
-            z-index: 10;
+            z-index: 100;
             text-align: center;
         }
 
@@ -77,7 +76,6 @@
         .welcome-icon {
             font-size: 54px;
             margin-bottom: 20px;
-            animation: pulseGlow 2.5s infinite ease-in-out;
         }
 
         .welcome-screen h1 {
@@ -105,13 +103,9 @@
             box-shadow: 0 0 20px rgba(255, 255, 255, 0.2);
             margin-bottom: 20px;
             width: 80%;
+            display: block;
         }
 
-        .btn-start:active {
-            transform: scale(0.95);
-        }
-
-        /* BOTÃO DE CONFIGURAÇÕES DE COR */
         .btn-settings {
             background: transparent;
             color: #8c8c8c;
@@ -124,9 +118,9 @@
             border-radius: 6px;
             cursor: pointer;
             width: 60%;
+            display: block;
         }
 
-        /* PAINEL DE PALETAS DE CORES */
         .color-panel {
             display: none;
             margin-top: 15px;
@@ -147,7 +141,6 @@
             border: 2px solid transparent;
         }
 
-        /* CONTEÚDO PRINCIPAL DO APP */
         .app-content {
             display: none;
             flex-direction: column;
@@ -170,7 +163,6 @@
             -webkit-text-fill-color: transparent;
         }
 
-        /* BARRA DE PROGRESSO COM BRILHO NEON */
         .progress-box {
             background: #111111;
             border: 1px solid #262626;
@@ -206,7 +198,6 @@
             transition: width 0.3s ease;
         }
 
-        /* MENSAGEM DE PARABÉNS CORRIGIDA NA TELA */
         .congratulations {
             display: none;
             background: #ffffff;
@@ -288,25 +279,17 @@
             color: #444444;
             text-decoration: line-through;
         }
-
-        @keyframes pulseGlow {
-            0% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); }
-            50% { transform: scale(1.05); filter: drop-shadow(0 0 20px rgba(255,255,255,0.4)); }
-            100% { transform: scale(1); filter: drop-shadow(0 0 5px rgba(255,255,255,0.1)); }
-        }
     </style>
 </head>
 <body>
 
 <div class="container">
-    <!-- TELA DO MENU INICIAR -->
     <div class="welcome-screen" id="welcomeScreen">
         <div class="welcome-icon">✨🕹️</div>
         <h1>Setup do King</h1>
         <button class="btn-start" onclick="startApp()">Iniciar</button>
         <button class="btn-settings" onclick="toggleSettings()">⚙️ Configurações</button>
         
-        <!-- SELETOR DE CORES -->
         <div class="color-panel" id="colorPanel">
             <div class="color-dot" style="background: #050505; border-color: #fff;" onclick="changeTheme('#121212', '#080808', '#050505')"></div>
             <div class="color-dot" style="background: #a82323;" onclick="changeTheme('#3a0d0d', '#1a0505', '#120202')"></div>
@@ -320,3 +303,29 @@
     <div class="app-content" id="appContent">
         <h1 class="main-title">Setup do King ✨🕹️</h1>
         
+        <div class="progress-box">
+            <div class="progress-text">
+                <span>Progresso do Upgrade</span>
+                <span id="prog-txt">0%</span>
+            </div>
+            <div class="var-bg">
+                <div id="bar-fill" class="bar-fill"></div>
+            </div>
+        </div>
+
+        <div id="congrats-msg" class="congratulations">
+            🎉 PARABÉNS, SEU SETUP FOI CONCLUÍDO! 🚀
+        </div>
+
+        <div id="app-list"></div>
+    </div>
+</div>
+
+<script>
+function startApp() {
+    document.getElementById('welcomeScreen').classList.add('hidden');
+    document.getElementById('appContent').classList.add('visible');
+}
+
+function toggleSettings() {
+    const panel = document.getElementById('colorPanel');
